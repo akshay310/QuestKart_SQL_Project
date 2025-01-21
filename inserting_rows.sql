@@ -36,3 +36,29 @@ INSERT INTO NGO.Food_Banks (bank_name, address, phone, contact_person, storage_c
 ('Pune Food Bank', 'Pune, Maharashtra', '+91-20-29012345', 'Smita Pawar', 1900),
 ('Chandigarh Food Bank', 'Chandigarh', '+91-172-20123456', 'Harpreet Singh', 1300);
 select * from NGO.Food_Banks;
+
+INSERT INTO NGO.Donations (donor_id, bank_id, donation_date) VALUES
+(1, 1, '2024-03-01'),
+(2, 2, '2024-03-05'),
+(3, 3, '2024-03-10'),
+(4, 1, '2024-03-12'),
+(5, 4, '2024-03-15'),
+(6, 5, '2024-03-18'),
+(7, 2, '2024-03-20'),
+(8, 3, '2024-03-22'),
+(9, 1, '2024-03-25'),
+(10, 4, '2024-03-28');
+select * from NGO.Donations
+
+INSERT INTO NGO.Donation_Items (donation_id, item_id, quantity, expiration_date) VALUES
+(1, 1, 500, '2025-03-01'),
+(1, 3, 200, '2024-12-31'),
+(2, 2, 300, '2024-09-30'),
+(3, 4, 400, '2025-01-15'),
+(4, 1, 250, '2024-11-30'),
+(5, 5, 100, '2024-06-30'),
+(6, 6, 150, '2025-02-28'),
+(7, 7, 200, '2024-08-31'),
+(8, 8, 100, '2024-10-31'),
+(9, 9, 300, '2025-04-30');
+select * from NGO.Donation_Items
