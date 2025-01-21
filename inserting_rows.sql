@@ -88,3 +88,39 @@ INSERT INTO NGO.Distribution_Items (distribution_id, item_id, quantity) VALUES
 (8, 8, 50),
 (9, 9, 150);
 select * from NGO.Distribution_Items 
+
+INSERT INTO NGO.Volunteers (first_name, last_name, phone, email, skills) VALUES
+('Amit', 'Patel', '+91-9812345678', 'amit.p@email.com', 'Sorting, Packing, Distribution'),
+('Geeta', 'Singh', '+91-9923456789', 'geeta.s@email.com', 'Data Entry, Inventory'),
+('Rahul', 'Sharma', '+91-9734567890', 'rahul.sh@email.com', 'Sorting, Distribution'),
+('Priya', 'Verma', '+91-9645678901', 'priya.v@email.com', 'Packing, Customer Service'),
+('Vikram', 'Yadav', '+91-9556789012', 'vikram.y@email.com', 'Inventory, Data Entry'),
+('Meera', 'Joshi', '+91-9467890123', 'meera.j@email.com', 'Sorting, Packing'),
+('Sunil', 'Gupta', '+91-9378901234', 'sunil.g@email.com', 'Distribution, Driving'),
+('Anita', 'Banerjee', '+91-9289012345', 'anita.b@email.com', 'Customer Service, Data Entry'),
+('Rajesh', 'Khanna', '+91-9190123456', 'rajesh.k@email.com', 'Sorting'),
+('Deepa', 'Reddy', '+91-9001234567', 'deepa.r@email.com', 'Packing, Inventory');
+select * from NGO.Volunteers
+
+INSERT INTO NGO.Volunteer_Shifts (volunteer_id, bank_id, shift_date, start_time, end_time, tasks) VALUES
+(1, 1, '2024-03-01', '09:00', '12:00', 'Sorting donated items'),
+(2, 2, '2024-03-05', '14:00', '17:00', 'Data entry of donations'),
+(3, 3, '2024-03-10', '10:00', '13:00', 'Distributing food to recipients'),
+(4, 1, '2024-03-12', '13:00', '16:00', 'Packing food boxes'),
+(5, 4, '2024-03-15', '09:00', '12:00', 'Inventory management'), 
+(6, 5, '2024-03-18', '11:00', '14:00', 'Sorting and packing'), 
+(7, 2, '2024-03-20', '15:00', '18:00', 'Distribution assistance'), 
+(8, 3, '2024-03-22', '09:30', '12:30', 'Data entry and filing'), 
+(9, 1, '2024-03-25', '14:30', '17:30', 'Sorting and organizing'), 
+(10, 4, '2024-03-28', '10:30', '13:30', 'Packing and labeling'),
+(1,1,'2024-03-08','09:00','12:00','Distribution'), 
+(3,2,'2024-03-12','10:00','13:00','Distribution'), 
+(5,3,'2024-03-15','11:00','14:00','Distribution'), 
+(7,1,'2024-03-19','12:00','15:00','Distribution'), 
+(9,4,'2024-03-22','13:00','16:00','Distribution'), 
+(2,5,'2024-03-26','14:00','17:00','Distribution'), 
+(4,2,'2024-03-29','15:00','18:00','Distribution'), 
+(6,3,'2024-04-02','09:00','12:00','Distribution'), 
+(8,1,'2024-04-05','10:00','13:00','Distribution'), 
+(10,4,'2024-04-09','11:00','14:00','Distribution'); 
+select * from NGO.Volunteer_Shifts
