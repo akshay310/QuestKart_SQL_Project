@@ -62,3 +62,29 @@ INSERT INTO NGO.Donation_Items (donation_id, item_id, quantity, expiration_date)
 (8, 8, 100, '2024-10-31'),
 (9, 9, 300, '2025-04-30');
 select * from NGO.Donation_Items
+
+INSERT INTO NGO.Distributions (bank_id, distribution_date) VALUES
+(1, '2024-03-08'),
+(2, '2024-03-12'),
+(3, '2024-03-15'),
+(1, '2024-03-19'),
+(4, '2024-03-22'),
+(5, '2024-03-26'),
+(2, '2024-03-29'),
+(3, '2024-04-02'),
+(1, '2024-04-05'),
+(4, '2024-04-09');
+select * from NGO.Distributions
+
+INSERT INTO NGO.Distribution_Items (distribution_id, item_id, quantity) VALUES
+(1, 1, 200),
+(1, 3, 100),
+(2, 2, 150),
+(3, 4, 200),
+(4, 1, 100),
+(5, 5, 50),
+(6, 6, 75),
+(7, 7, 100),
+(8, 8, 50),
+(9, 9, 150);
+select * from NGO.Distribution_Items 
