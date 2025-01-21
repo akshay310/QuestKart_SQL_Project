@@ -10,3 +10,16 @@ INSERT INTO NGO.Donors (donor_name, donor_type, contact_person, phone, email, ad
 ('ITC Limited', 'Business', 'Anita Banerjee', '+91-9109876543', 'csr@itc.in', 'Kolkata, West Bengal'),
 ('Ms. Lakshmi Iyer', 'Individual', 'Lakshmi Iyer', '+91-9098765432', 'lakshmi.i@email.com', 'Chennai, Tamil Nadu');
 select * from NGO.Donors;
+
+INSERT INTO NGO.Food_Items(item_name, item_type, storage_requirements) VALUES
+('Atta','Staple','Dry'),
+('Basmati Rice','Staple','Dry'),
+('Dal', 'Staple', 'Dry'),
+('Parle-G Biscuits', 'Snacks', 'Dry'),
+('Saffola Oil', 'Cooking Essentials', 'Dry'),
+('Sugar', 'Sweetener', 'Dry'),
+('Tea Leaves', 'Beverage', 'Dry'),
+('Milk Powder', 'Dairy', 'Dry'),
+('Potatoes', 'Vegetable', 'Dry'),
+('Onions', 'Vegetable', 'Dry');
+select * from NGO.Food_Items;
