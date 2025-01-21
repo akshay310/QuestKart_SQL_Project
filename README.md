@@ -1,6 +1,6 @@
 This PostgreSQL database, named **NGO**, is designed to manage the operations of a network of local food banks. It tracks donations, food items, food bank locations, distributions to those in need, and the volunteers who support these activities. Here's a breakdown of the tables and their relationships:
 
-1)**Core Entities:**
+1) **Core Entities:**
 
 
 **NGO.Donors**: Stores information about those who donate food. This includes individuals, businesses, and organizations. Key attributes include donor_name, donor_type, contact_person, and contact details.
@@ -11,7 +11,7 @@ This PostgreSQL database, named **NGO**, is designed to manage the operations of
 
 **NGO.Volunteers**: Stores information about the volunteers who assist at the food banks, including their first_name, last_name, contact details, and skills.
 
-2)**Transaction/Event Tables:**
+2) **Transaction/Event Tables:**
 
 **NGO.Donations**: Records each donation event. It links a donor_id (from Donors), a bank_id (from Food_Banks), and the donation_date.
 
@@ -23,7 +23,7 @@ This PostgreSQL database, named **NGO**, is designed to manage the operations of
 
 **NGO.Volunteer_Shifts**: Records the shifts worked by volunteers. It links a volunteer_id (from Volunteers), a bank_id (from Food_Banks), the shift_date, start_time, end_time, and a description of the tasks performed.
 
-3)**Relationships and Key Concepts:**
+3) **Relationships and Key Concepts:**
 
 **Many-to-Many Relationships:**
 Donations and Food_Items are linked through Donation_Items. A single donation can include multiple food items, and a single food item can be part of multiple donations.
@@ -35,7 +35,7 @@ Distributions and Food_Items are linked through Distribution_Items. A single dis
 
 **Schema**: All tables are created within the NGO schema, which helps organize the database and prevent naming conflicts.
 
-4)**Purpose and Use Cases:**
+4) **Purpose and Use Cases:**
 
 This database is designed to support various operations and analyses, such as:
 
