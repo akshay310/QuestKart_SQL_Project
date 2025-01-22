@@ -36,4 +36,4 @@ FROM NGO.Donors don
 LEFT JOIN NGO.Donations d ON don.donor_id = d.donor_id
 LEFT JOIN NGO.Donation_Items di ON d.donation_id = di.donation_id
 GROUP BY don.donor_name;
-select * from NGO.DonorDonationSummary ORDER BY total_donations desc;
+select * from NGO.DonorDonationSummary ORDER BY total_donations,total_quantity_donated asc;
