@@ -154,3 +154,53 @@ INSERT INTO NGO.Volunteer_Shifts (volunteer_id, bank_id, shift_date, start_time,
 (6, 7, '2024-08-15', '14:30', '17:30', 'Receiving and sorting'), 
 (7, 9, '2024-08-20', '11:00', '14:00', 'Unloading and organizing'), 
 (8, 10, '2024-08-25', '15:30', '18:30', 'Packing and labeling'); 
+
+INSERT INTO NGO.Distributions (bank_id, distribution_date) VALUES
+(6, '2024-07-22'), 
+(8, '2024-07-27'); 
+select * from NGO.Distributions
+
+INSERT INTO NGO.Distribution_Items (distribution_id, item_id, quantity) VALUES
+(13, 2, 50), (13, 4, 75), (13, 6, 35), 
+(14, 1, 60), (14, 3, 90), (14, 5, 45); 
+
+INSERT INTO NGO.Distributions (bank_id, distribution_date) VALUES
+(7, '2024-08-08'),
+(9, '2024-08-12'), 
+(10, '2024-08-17'),
+(7, '2024-08-22'), 
+(9, '2024-08-27'), 
+(10, '2024-09-01'); 
+
+INSERT INTO NGO.Distribution_Items (distribution_id, item_id, quantity) VALUES
+(15, 3, 100), (15, 5, 50), (15, 1, 30), 
+(16, 2, 75), (16, 4, 125), (16, 6, 60), 
+(17, 1, 90), (17, 3, 150), (17, 5, 75), 
+(18, 2, 60), (18, 4, 100), (18, 6, 50), 
+(19, 1, 75), (19, 3, 125), (19, 5, 60), 
+(20, 2, 50), (20, 4, 75), (20, 6, 35);
+select * from NGO.Distribution_Items
+
+INSERT INTO NGO.Volunteer_Shifts (volunteer_id, bank_id, shift_date, start_time, end_time, tasks) VALUES
+(1, 6, '2024-07-15', '09:00', '12:00', 'Receiving and sorting donation'),
+(2, 8, '2024-07-20', '14:00', '17:00', 'Inventory and data entry'),
+(3, 7, '2024-08-01', '10:00', '13:00', 'Unloading and organizing'),
+(4, 9, '2024-08-05', '13:00', '16:00', 'Packing and labeling'),
+(5, 10, '2024-08-10', '09:30', '12:30', 'Inventory management'),
+(6, 7, '2024-08-15', '14:30', '17:30', 'Receiving and sorting'),
+(7, 9, '2024-08-20', '11:00', '14:00', 'Unloading and organizing'),
+(8, 10, '2024-08-25', '15:30', '18:30', 'Packing and labeling'),
+(9, 6, '2024-07-22', '09:00', '12:00', 'Assisting with distribution'),
+(10, 8, '2024-07-27', '10:00', '13:00', 'Managing distribution lines'),
+(1, 7, '2024-08-08', '11:00', '14:00', 'Distributing food items'),
+(2, 9, '2024-08-12', '12:00', '15:00', 'Assisting with distribution'),
+(3, 10, '2024-08-17', '13:00', '16:00', 'Managing distribution flow'),
+(4, 7, '2024-08-22', '14:00', '17:00', 'Distributing food items'),
+(5, 9, '2024-08-27', '15:00', '18:00', 'Assisting with distribution'),
+(6, 10, '2024-09-01', '09:00', '12:00', 'Managing distribution flow'),
+(7, 1, '2024-07-29', '10:00', '13:00', 'Sorting'),
+(8, 2, '2024-08-02', '11:00', '14:00', 'Packing'),
+(9, 3, '2024-08-09', '12:00', '15:00', 'Distribution'),
+(10, 4, '2024-08-16', '13:00', '16:00', 'Inventory'),
+(1, 5, '2024-08-23', '14:00', '17:00', 'Data Entry'),
+(2, 6, '2024-08-30', '09:00', '12:00', 'Sorting');
