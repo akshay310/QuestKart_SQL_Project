@@ -24,6 +24,7 @@ JOIN NGO.Donations d ON fb.bank_id = d.bank_id
 JOIN NGO.Donation_Items di ON d.donation_id = di.donation_id
 GROUP BY fb.bank_name
 ORDER BY total_donated_quantity DESC
+LIMIT 1;
 
 --Find the average quantity of each food item donated across all donations:
 SELECT fi.item_name, AVG(di.quantity) AS average_donated_quantity
