@@ -12,3 +12,21 @@ ORDER BY di.expiration_date);
 SELECT * FROM EXPIRY_IN_60_DAYS
 
 
+--View to find the highest donated food item to each bank
+Create view highest_donated_per_bank as(
+WITH RankedDistributions AS (
+    SELECT fb.bank_name, fi.item_name, SUM(di.quantity) AS total_distributed,
+           ROW_NUMBER() OVER (PARTITION BY fb.bank_name ORDER BY SUM(di.quantity) DESC) as rn
+    FROM NGO.Food_Banks fb
+    JOIN NGO.Distributions dist ON fb.bank_id = dist.bank_id
+    JOIN NGO.Distribution_Items di ON dist.distribution_id = di.distribution_id
+    JOIN NGO.Food_Items fi ON di.item_id = fi.item_id
+    GROUP BY fb.bank_name, fi.item_name
+)
+SELECT bank_name, item_name, total_distributed
+FROM RankedDistributions
+WHERE rn = 1);
+
+select * from highest_donated_per_bank
+
+
