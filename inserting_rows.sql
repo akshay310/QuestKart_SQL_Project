@@ -204,3 +204,6 @@ INSERT INTO NGO.Volunteer_Shifts (volunteer_id, bank_id, shift_date, start_time,
 (10, 4, '2024-08-16', '13:00', '16:00', 'Inventory'),
 (1, 5, '2024-08-23', '14:00', '17:00', 'Data Entry'),
 (2, 6, '2024-08-30', '09:00', '12:00', 'Sorting');
+
+INSERT INTO NGO.Donation_Items (donation_id, item_id, quantity, expiration_date)
+VALUES (3, 2, 75, '2025-02-15');
