@@ -30,10 +30,14 @@ WHERE rn = 1);
 select * from highest_donated_per_bank
 
 --View to see donor donation summary
-CREATE VIEW NGO.DonorDonationSummary AS
+CREATE MATERIALIZED VIEW DonationSummary AS
 SELECT don.donor_name, COUNT(DISTINCT d.donation_id) AS total_donations, SUM(di.quantity) AS total_quantity_donated
 FROM NGO.Donors don
 LEFT JOIN NGO.Donations d ON don.donor_id = d.donor_id
 LEFT JOIN NGO.Donation_Items di ON d.donation_id = di.donation_id
 GROUP BY don.donor_name;
-select * from NGO.DonorDonationSummary ORDER BY total_donations,total_quantity_donated asc;
+
+select * from DonationSummary ORDER BY total_donations,total_quantity_donated asc;
+
+
+
