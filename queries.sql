@@ -36,9 +36,9 @@ ORDER BY total_donated_quantity DESC
 LIMIT 1;
 
 --Find the average quantity of each food item donated across all donations:
-SELECT fi.item_name, AVG(di.quantity) AS average_donated_quantity
+SELECT fi.item_name, COALESCE(AVG(di.quantity), 0) AS average_donated_quantity
 FROM NGO.Food_Items fi
-JOIN NGO.Donation_Items di ON fi.item_id = di.item_id
+LEFT OUTER JOIN NGO.Donation_Items di ON fi.item_id = di.item_id
 GROUP BY fi.item_name
 ORDER BY average_donated_quantity DESC;
 
