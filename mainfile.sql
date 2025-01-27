@@ -1,3 +1,5 @@
+-- Contains the entire SQL Code. Involves creating tables, inserting rows, queries and views
+
 CREATE SCHEMA IF NOT EXISTS NGO; 
 CREATE TABLE NGO.Donors (
     donor_id SERIAL PRIMARY KEY,
