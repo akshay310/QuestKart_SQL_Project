@@ -142,20 +142,15 @@ Foreign keys are used to enforce referential integrity:
 ```
 📂 NGO_Database
 │── 📂 schema_scripts
-│   │── ngo_schema.sql
+│   │── ngo.sql
 │
 │── 📂 data_population
-│   │── sample_data.sql
+│   │── insert.sql
 │
 │── 📂 queries
-│   │── donation_tracking.sql
-│   │── inventory_management.sql
-│   │── volunteer_management.sql
-│
-│── 📂 reports
-│   │── donation_reports.csv
-│   │── inventory_reports.csv
-│
+│   │── queries.sql
+|   │── views.sql
+|
 │── README.md
 ```
 
