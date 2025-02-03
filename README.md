@@ -1,52 +1,165 @@
-This PostgreSQL database, named **NGO**, is designed to manage the operations of a network of local food banks. It tracks donations, food items, food bank locations, distributions to those in need, and the volunteers who support these activities. Here's a breakdown of the tables and their relationships:
+# NGO PostgreSQL Database Schema
 
-1) **Core Entities:**
+## Overview
+This **PostgreSQL** database, named **NGO**, is designed to manage the operations of a network of local food banks. It tracks donations, food items, food bank locations, distributions to those in need, and the volunteers who support these activities.
 
+## 1. Core Entities
 
-**NGO.Donors**: Stores information about those who donate food. This includes individuals, businesses, and organizations. Key attributes include donor_name, donor_type, contact_person, and contact details.
+### **NGO.Donors**
+Stores information about those who donate food, including individuals, businesses, and organizations.
 
-**NGO.Food_Items**: Contains details about the different types of food items donated. This includes item_name, item_type (e.g., "Canned Goods," "Produce"), and storage_requirements (e.g., "Dry," "Refrigerated").
+- **donor_id** (PK, INT, AUTO_INCREMENT)
+- **donor_name** (VARCHAR)
+- **donor_type** (VARCHAR) (e.g., "Individual," "Business")
+- **contact_person** (VARCHAR)
+- **contact_details** (VARCHAR)
 
-**NGO.Food_Banks**: Stores information about each food bank location within the network. Key attributes include bank_name, address, contact details, and storage_capacity.
+### **NGO.Food_Items**
+Contains details about different types of donated food items.
 
-**NGO.Volunteers**: Stores information about the volunteers who assist at the food banks, including their first_name, last_name, contact details, and skills.
+- **item_id** (PK, INT, AUTO_INCREMENT)
+- **item_name** (VARCHAR)
+- **item_type** (VARCHAR) (e.g., "Canned Goods," "Produce")
+- **storage_requirements** (VARCHAR) (e.g., "Dry," "Refrigerated")
 
-2) **Transaction/Event Tables:**
+### **NGO.Food_Banks**
+Stores information about food bank locations.
 
-**NGO.Donations**: Records each donation event. It links a donor_id (from Donors), a bank_id (from Food_Banks), and the donation_date.
+- **bank_id** (PK, INT, AUTO_INCREMENT)
+- **bank_name** (VARCHAR)
+- **address** (TEXT)
+- **contact_details** (VARCHAR)
+- **storage_capacity** (INT)
 
-**NGO.Donation_Items**: Represents the specific items within each donation. It links a donation_id (from Donations), an item_id (from Food_Items), the quantity donated, and the expiration_date of the items. This table implements a many-to-many relationship between donations and food items.
+### **NGO.Volunteers**
+Stores volunteer information.
 
-**NGO.Distributions**: Records each distribution of food to those in need. It links a bank_id (from Food_Banks) and the distribution_date.
+- **volunteer_id** (PK, INT, AUTO_INCREMENT)
+- **first_name** (VARCHAR)
+- **last_name** (VARCHAR)
+- **contact_details** (VARCHAR)
+- **skills** (TEXT)
 
-**NGO.Distribution_Items**: Represents the specific items distributed during each distribution event. It links a distribution_id (from Distributions), an item_id (from Food_Items), and the quantity distributed. This table implements a many-to-many relationship between distributions and food items.
+---
 
-**NGO.Volunteer_Shifts**: Records the shifts worked by volunteers. It links a volunteer_id (from Volunteers), a bank_id (from Food_Banks), the shift_date, start_time, end_time, and a description of the tasks performed.
+## 2. Transaction/Event Tables
 
-3) **Relationships and Key Concepts:**
+### **NGO.Donations**
+Records each donation event.
 
-**Many-to-Many Relationships:**
-Donations and Food_Items are linked through Donation_Items. A single donation can include multiple food items, and a single food item can be part of multiple donations.
-Distributions and Food_Items are linked through Distribution_Items. A single distribution can include multiple food items, and a single food item can be part of multiple distributions.
+- **donation_id** (PK, INT, AUTO_INCREMENT)
+- **donor_id** (FK, INT → Donors.donor_id)
+- **bank_id** (FK, INT → Food_Banks.bank_id)
+- **donation_date** (DATE)
 
-**Foreign Keys**: Foreign keys are used extensively to enforce referential integrity and maintain consistency between related tables. For example, the Donations table has foreign keys referencing Donors and Food_Banks, ensuring that every donation is associated with a valid donor and food bank.
+### **NGO.Donation_Items**
+Represents specific items within each donation.
 
-**Data Integrity**: NOT NULL and CHECK constraints are used to enforce data quality. For example, quantity in Donation_Items and Distribution_Items must be greater than 0, and donor_type must be one of the allowed values.
+- **donation_item_id** (PK, INT, AUTO_INCREMENT)
+- **donation_id** (FK, INT → Donations.donation_id)
+- **item_id** (FK, INT → Food_Items.item_id)
+- **quantity** (INT, CHECK > 0)
+- **expiration_date** (DATE)
 
-**Schema**: All tables are created within the NGO schema, which helps organize the database and prevent naming conflicts.
+### **NGO.Distributions**
+Records each food distribution event.
 
-4) **Purpose and Use Cases:**
+- **distribution_id** (PK, INT, AUTO_INCREMENT)
+- **bank_id** (FK, INT → Food_Banks.bank_id)
+- **distribution_date** (DATE)
 
-This database is designed to support various operations and analyses, such as:
+### **NGO.Distribution_Items**
+Represents specific items distributed in each event.
 
-**Inventory Management**: Tracking the quantity and location of food items, including expiration dates.
+- **distribution_item_id** (PK, INT, AUTO_INCREMENT)
+- **distribution_id** (FK, INT → Distributions.distribution_id)
+- **item_id** (FK, INT → Food_Items.item_id)
+- **quantity** (INT, CHECK > 0)
 
-**Donation Tracking**: Recording donations, identifying top donors, and analyzing donation patterns.
+### **NGO.Volunteer_Shifts**
+Records shifts worked by volunteers.
 
-**Distribution Management**: Recording distributions, tracking which items are distributed, and analyzing distribution trends.
+- **shift_id** (PK, INT, AUTO_INCREMENT)
+- **volunteer_id** (FK, INT → Volunteers.volunteer_id)
+- **bank_id** (FK, INT → Food_Banks.bank_id)
+- **shift_date** (DATE)
+- **start_time** (TIME)
+- **end_time** (TIME)
+- **task_description** (TEXT)
 
-**Volunteer Management**: Scheduling volunteers, tracking their hours, and matching their skills to tasks.
+---
 
-**Reporting and Analysis**: Generating reports on donations, distributions, inventory levels, and volunteer activity.
+## 3. Relationships and Key Concepts
 
-By using this database, the food bank network can improve its efficiency, transparency, and ability to serve the community.
+### **Many-to-Many Relationships**
+- **Donations and Food_Items** are linked through `NGO.Donation_Items`.
+- **Distributions and Food_Items** are linked through `NGO.Distribution_Items`.
+
+### **Foreign Keys**
+Foreign keys are used to enforce referential integrity:
+- `NGO.Donations` references `NGO.Donors` and `NGO.Food_Banks`.
+- `NGO.Donation_Items` references `NGO.Donations` and `NGO.Food_Items`.
+- `NGO.Distributions` references `NGO.Food_Banks`.
+- `NGO.Distribution_Items` references `NGO.Distributions` and `NGO.Food_Items`.
+- `NGO.Volunteer_Shifts` references `NGO.Volunteers` and `NGO.Food_Banks`.
+
+### **Data Integrity Constraints**
+- `NOT NULL` and `CHECK` constraints ensure data consistency.
+- `quantity` fields in `NGO.Donation_Items` and `NGO.Distribution_Items` must be greater than 0.
+- `donor_type` must be a predefined value.
+
+### **Schema Organization**
+- All tables belong to the `NGO` schema to prevent naming conflicts and maintain organization.
+
+---
+
+## 4. Purpose and Use Cases
+
+### **Inventory Management**
+- Track food quantities, locations, and expiration dates.
+
+### **Donation Tracking**
+- Record donations and analyze donation patterns.
+- Identify top donors.
+
+### **Distribution Management**
+- Track distributions, including what items were distributed and when.
+
+### **Volunteer Management**
+- Schedule volunteers and track their shifts.
+- Match volunteers to tasks based on skills.
+
+### **Reporting & Analysis**
+- Generate reports on:
+  - **Donation trends**
+  - **Distribution patterns**
+  - **Inventory levels**
+  - **Volunteer participation**
+
+---
+
+## 5. Repository Structure
+```
+📂 NGO_Database
+│── 📂 schema_scripts
+│   │── ngo_schema.sql
+│
+│── 📂 data_population
+│   │── sample_data.sql
+│
+│── 📂 queries
+│   │── donation_tracking.sql
+│   │── inventory_management.sql
+│   │── volunteer_management.sql
+│
+│── 📂 reports
+│   │── donation_reports.csv
+│   │── inventory_reports.csv
+│
+│── README.md
+```
+
+---
+
+## Conclusion
+This database provides an efficient way to manage food bank operations, ensuring transparency, efficiency, and improved service to the community.
